@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тренажёр: Показательные неравенства | ЕГЭ</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background: #4CAF50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            background: #333;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+        nav li {
+            margin: 0 15px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        main {
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .math-display {
+            font-size: 1.2em;
+            margin: 15px 0;
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+            text-align: center;
+            border-left: 4px solid #4CAF50;
+        }
+        #task-container {
+            min-height: 100px;
+            margin: 20px 0;
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        #show-all-tasks {
+            background: #2196F3;
+        }
+        #show-all-tasks:hover {
+            background: #0b7dda;
+        }
+        input[type="text"] {
+            padding: 8px;
+            width: 200px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        .difficulty {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        .easy {
+            background-color: #d4edda;
+            color: #155724;
+        }
+        .medium {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+        .hard {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+        #result {
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .correct {
+            background: #d4edda;
+            color: #155724;
+        }
+        .incorrect {
+            background: #f8d7da;
+            color: #721c24;
+        }
+        #hint {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f0f8ff;
+            border-radius: 5px;
+            border-left: 4px solid #2196F3;
+        }
+        .hidden {
+            display: none;
+        }
+        .task-list {
+            margin-top: 30px;
+            border-top: 1px solid #ddd;
+            padding-top: 20px;
+        }
+        .task-item {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 5px;
+            border-left: 4px solid #6c757d;
+        }
+        .task-item h4 {
+            margin-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Тренажёр: Показательные неравенства</h1>
+        <p>Практика решения задач ЕГЭ</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="theory.html">Теория</a></li>
+            <li><a href="practice.html">Тренажёр</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="practice-section">
+            <h2>Решите неравенство: <span id="difficulty-badge" class="difficulty easy">Лёгкий</span></h2>
+            <div id="task-container">
+                <div class="math-display" id="task-text">\( 2^{x+1} > 8 \)</div>
+            </div>
+           
+            <div class="controls">
+                <label>
+                    Ваш ответ:
+                    <input type="text" id="user-answer" placeholder="x > 2">
+                </label>
+                <button id="check-answer">Проверить</button>
+                <button id="generate-task">Новая задача</button>
+                <button id="show-hint">Подсказка</button>
+                <select id="difficulty-select">
+                    <option value="all">Все уровни</option>
+                    <option value="easy">Лёгкий</option>
+                    <option value="medium">Средний</option>
+                    <option value="hard">Сложный</option>
+                </select>
+                <button id="show-all-tasks">Показать все задачи</button>
+            </div>
+           
+            <div id="result"></div>
+            <div id="hint" class="hidden"></div>
+           
+            <div class="task-list hidden" id="all-tasks-container">
+                <h3>Все задачи:</h3>
+                <!-- Сюда будут добавляться задачи через JavaScript -->
+            </div>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Подготовка к ЕГЭ</p>
+    </footer>
+   
+    <script>
+        // Расширенный список задач (15 примеров)
+        const tasks = [
+            // Лёгкий уровень (5 задач)
+            {
+                text: "2^{x} > 16",
+                answer: "x > 4",
+                hint: "Представьте 16 как степень 2: 16 = 2^4",
+                difficulty: "easy"
+            },
+            {
+                text: "3^{x-1} \\leq 27",
+                answer: "x \\leq 4",
+                hint: "27 = 3^3, после приведения к одному основанию сравните показатели",
+                difficulty: "easy"
+            },
+            {
+                text: "5^{2x} = 25",
+                answer: "x = 1",
+                hint: "25 = 5^2, приравняйте показатели",
+                difficulty: "easy"
+            },
+            {
+                text: "\\left(\\frac{1}{2}\\right)^{x} > 8",
+                answer: "x < -3",
+                hint: "8 = 2^3, а 1/2 = 2^{-1}. Не забудьте, что основание между 0 и 1 - знак меняется",
+                difficulty: "easy"
+            },
+            {
+                text: "10^{x} \\geq 0.001",
+                answer: "x \\geq -3",
+                hint: "0.001 = 10^{-3}",
+                difficulty: "easy"
+            },
+
+            // Средний уровень (5 задач)
+            {
+                text: "2^{x^2 - 3x} < 1",
+                answer: "0 < x < 3",
+                hint: "1 = 2^0. Решите квадратное неравенство x^2 - 3x < 0",
+                difficulty: "medium"
+            },
+            {
+                text: "9^x - 4 \\cdot 3^x + 3 \\leq 0",
+                answer: "0 \\leq x \\leq 1",
+                hint: "Сделайте замену t = 3^x. Решите квадратное неравенство t^2 - 4t + 3 ≤ 0",
+                difficulty: "medium"
+            },
+            {
+                text: "4^{x} - 3 \\cdot 2^{x+1} + 8 \\geq 0",
+                answer: "x \\leq 1 \\text{ или } x \\geq 2",
+                hint: "Замена t = 2^x. Учтите, что 2^{x+1} = 2 * 2^x",
+                difficulty: "medium"
+            },
+            {
+                text: "\\sqrt{5^{2x-1}} > 25",
+                answer: "x > 2.5",
+                hint: "Корень можно представить как степень 1/2: 5^{(2x-1)/2} > 5^2",
+                difficulty: "medium"
+            },
+            {
+                text: "2^{3x} - 5 \\cdot 2^{2x} + 6 \\cdot 2^{x} < 0",
+                answer: "1 < x < \\log_2 3",
+                hint: "Вынесите 2^x за скобки: 2^x(2^{2x} - 5*2^x + 6) < 0",
+                difficulty: "medium"
+            },
+
+            // Сложный уровень (5 задач)
+            {
+                text: "(x^2 - 1)^{2x^2 - 3x} \\geq 1",
+                answer: "x \\leq -1 \\text{ или } x = 0 \\text{ или } x \\geq 1 \\text{ или } x = \\frac{3}{2}",
+                hint: "Разберите случаи: 1) основание=1, 2) основание>1 и показатель≥0, 3) 0<основание<1 и показатель≤0",
+                difficulty: "hard"
+            },
+            {
+                text: "5^{|x-2|} - 5^{|x|} \\geq 20",
+                answer: "x \\leq -1",
+                hint: "Разбейте на интервалы по точкам x=0 и x=2. Рассмотрите каждый случай отдельно",
+                difficulty: "hard"
+            },
+            {
+                text: "\\left(\\frac{x+3}{x-1}\\right)^{x^2} \\leq 1",
+                answer: "-3 \\leq x < 1 \\text{ или } x \\geq 2",
+                hint: "Рассмотрите 4 случая: основание=1, основание>1, 0<основание<1, основание<0",
+                difficulty: "hard"
+            },
+            {
+                text: "2^{\\sin^2 x} + 2^{\\cos^2 x} \\leq 3",
+                answer: "\\frac{\\pi}{4} + \\pi n \\leq x \\leq \\frac{3\\pi}{4} + \\pi n, n \\in \\mathbb{Z}",
+                hint: "Используйте тождество sin²x + cos²x = 1 и замену t = 2^{sin²x}",
+                difficulty: "hard"
+            },
+            {
+                text: "\\log_2 (4^x + 4) = x + \\log_2 (2^{x+1} - 3)",
+                answer: "x = 1",
+                hint: "Перенесите x в левую часть, используйте свойства логарифмов",
+                difficulty: "hard"
+            }
+        ];
+
+        // Элементы DOM
+        const taskText = document.getElementById('task-text');
+        const userAnswer = document.getElementById('user-answer');
+        const checkButton = document.getElementById('check-answer');
+        const generateButton = document.getElementById('generate-task');
+        const hintButton = document.getElementById('show-hint');
+        const resultDiv = document.getElementById('result');
+        const hintDiv = document.getElementById('hint');
+        const difficultySelect = document.getElementById('difficulty-select');
+        const difficultyBadge = document.getElementById('difficulty-badge');
+        const showAllBtn = document.getElementById('show-all-tasks');
+        const allTasksContainer = document.getElementById('all-tasks-container');
+
+        // Текущая задача
+        let currentTask = null;
+
+        // Показать новую задачу
+        function showTask() {
+            let filteredTasks = tasks;
+            const selectedDifficulty = difficultySelect.value;
+           
+            if (selectedDifficulty !== "all") {
+                filteredTasks = tasks.filter(task => task.difficulty === selectedDifficulty);
+            }
+           
+            if (filteredTasks.length === 0) {
+                taskText.innerHTML = "Нет задач выбранного уровня сложности";
+                currentTask = null;
+                return;
+            }
+           
+            currentTask = filteredTasks[Math.floor(Math.random() * filteredTasks.length)];
+            taskText.innerHTML = `\\( ${currentTask.text} \\)`;
+            userAnswer.value = '';
+            resultDiv.innerHTML = '';
+            resultDiv.className = '';
+            hintDiv.innerHTML = currentTask.hint;
+            hintDiv.classList.add('hidden');
+           
+            // Обновляем бейдж сложности
+            difficultyBadge.textContent =
+                currentTask.difficulty === "easy" ? "Лёгкий" :
+                currentTask.difficulty === "medium" ? "Средний" : "Сложный";
+            difficultyBadge.className = `difficulty ${currentTask.difficulty}`;
+           
+            // Перерисовываем формулы
+            if (window.MathJax) {
+                MathJax.typeset();
+            }
+        }
+
+        // Проверить ответ
+        function checkAnswer() {
+            if (!currentTask) return;
+           
+            const userAns = userAnswer.value.trim();
+            const correctAns = currentTask.answer;
+           
+            if (userAns === correctAns) {
+                resultDiv.textContent = '✓ Верно!';
+                resultDiv.className = 'correct';
+            } else {
+                resultDiv.innerHTML = `✗ Неверно. Правильный ответ: \\( ${correctAns} \\)`;
+                resultDiv.className = 'incorrect';
+               
+                if (window.MathJax) {
+                    MathJax.typeset();
+                }
+            }
+        }
+
+        // Показать/скрыть подсказку
+        function toggleHint() {
+            hintDiv.classList.toggle('hidden');
+            hintButton.textContent = hintDiv.classList.contains('hidden') ? 'Показать подсказку' : 'Скрыть подсказку';
+        }
+
+        // Показать все задачи
+        function showAllTasks() {
+            allTasksContainer.innerHTML = '<h3>Все задачи:</h3>';
+           
+            tasks.forEach((task, index) => {
+                const taskItem = document.createElement('div');
+                taskItem.className = 'task-item';
+                taskItem.innerHTML = `
+                    <h4>Задача ${index+1} (${task.difficulty === 'easy' ? 'Лёгкий' : task.difficulty === 'medium' ? 'Средний' : 'Сложный'})</h4>
+                    <div class="math-display">\\( ${task.text} \\)</div>
+                    <p><strong>Ответ:</strong> \\( ${task.answer} \\)</p>
+                    <p><strong>Подсказка:</strong> ${task.hint}</p>
+                `;
+                allTasksContainer.appendChild(taskItem);
+            });
+           
+            allTasksContainer.classList.toggle('hidden');
+            showAllBtn.textContent = allTasksContainer.classList.contains('hidden') ? 'Показать все задачи' : 'Скрыть задачи';
+           
+            if (window.MathJax) {
+                MathJax.typeset();
+            }
+        }
+
+        // Назначение обработчиков событий
+        generateButton.addEventListener('click', showTask);
+        checkButton.addEventListener('click', checkAnswer);
+        hintButton.addEventListener('click', toggleHint);
+        difficultySelect.addEventListener('change', showTask);
+        showAllBtn.addEventListener('click', showAllTasks);
+
+        // Инициализация при загрузке
+        document.addEventListener('DOMContentLoaded', function() {
+            showTask();
+        });
+    </script>
+</body>
+</html>

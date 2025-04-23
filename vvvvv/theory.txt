@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Теория: Показательные неравенства | ЕГЭ</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Теория: Показательные неравенства</h1>
+        <p>Все методы решения для ЕГЭ</p>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="theory.html">Теория</a></li>
+            <li><a href="practice.html">Тренажёр</a></li>
+        </ul>
+    </nav>
+    <main>
+        <section class="theory-section">
+            <h2>1. Основные свойства</h2>
+            <p>Показательная функция \( a^{f(x)} \) (\( a > 0, a \neq 1 \)):</p>
+            <ul>
+                <li>Если \( a > 1 \): \( a^{f(x)} > a^{g(x)} \Rightarrow f(x) > g(x) \) (знак сохраняется).</li>
+                <li>Если \( 0 < a < 1 \): \( a^{f(x)} > a^{g(x)} \Rightarrow f(x) < g(x) \) (знак меняется).</li>
+            </ul>
+            <div class="example">
+                <p><strong>Пример:</strong> \( 2^{x+1} > 8 \)</p>
+                    <p>1. Приводим к одинаковому основанию: \( 2^{x+1} > 2^3 \).</p>
+                    <p>2. Основание \( 2 > 1 \), значит: \( x+1 > 3 \).</p>
+                    <p>3. Решение: \( x > 2 \).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-section">
+            <h2>2. Метод замены переменной</h2>
+            <p>Применяется для неравенств вида \( a^{2f(x)} + b \cdot a^{f(x)} + c > 0 \).</p>
+            <div class="example">
+                <p><strong>Пример:</strong> \( 9^x - 6 \cdot 3^x + 8 > 0 \)</p>
+                    <p>1. Замена: \( t = 3^x \) (\( t > 0 \)):</p>
+                    <p>2. Неравенство: \( t^2 - 6t + 8 > 0 \).</p>
+                    <p>3. Решаем: \( t \in (-\infty, 2) \cup (4, +\infty) \).</p>
+                    <p>4. Обратная замена:</p>
+                    <ul>
+                        <li>\( 3^x < 2 \Rightarrow x < \log_3 2 \),</li>
+                        <li>\( 3^x > 4 \Rightarrow x > \log_3 4 \).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-section">
+            <h2>3. Логарифмирование</h2>
+            <p>Используется, если переменная в основании и показателе: \( (f(x))^{g(x)} > (f(x))^{h(x)} \).</p>
+            <div class="example">
+                <p><strong>Пример:</strong> \( x^{2x-1} > x^{x+2} \) (\( x > 0, x \neq 1 \))</p>
+                    <p>1. Рассмотрим случаи:</p>
+                    <ul>
+                        <li><strong>\( x > 1 \):</strong> \( 2x-1 > x+2 \Rightarrow x > 3 \).</li>
+                        <li><strong>\( 0 < x < 1 \):</strong> \( 2x-1 < x+2 \Rightarrow x < 3 \) (учитываем \( 0 < x < 1 \)).</li>
+                    </ul>
+                    <p>2. Ответ: \( x \in (0,1) \cup (3, +\infty) \).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-section">
+            <h2>4. Графический метод</h2>
+            <p>Полезен для визуализации решений.</p>
+            <div class="example">
+                <p><strong>Пример:</strong> \( 2^x > x + 1 \)</p>
+                    <p>1. Строим графики \( y = 2^x \) и \( y = x + 1 \).</p>
+                    <p>2. Точки пересечения: \( x = 0 \) и \( x = 1 \).</p>
+                    <p>3. Решение: \( x \in (-\infty, 0) \cup (1, +\infty) \).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="theory-section">
+            <h2>5. Частые ошибки</h2>
+            <ul>
+                <li>Не учли ОДЗ (например, \( \sqrt{a^x} \) требует \( a^x \geq 0 \)).</li>
+                <li>Перепутали знак при \( 0 < a < 1 \).</li>
+                <li>Потеряли корни при замене переменной.</li>
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Подготовка к ЕГЭ</p>
+    </footer>
+    <script>
+        // Показ/скрытие решений
+        document.querySelectorAll('.show-solution').forEach(button => {
+            button.addEventListener('click', () => {
+                const solution = button.nextElementSibling;
+                solution.classList.toggle('hidden');
+                button.textContent = solution.classList.contains('hidden') ?
+                    'Показать решение' : 'Скрыть решение';
+            });
+        });
+    </script>
+</body>
+</html>
